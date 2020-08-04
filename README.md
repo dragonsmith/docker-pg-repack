@@ -16,3 +16,9 @@ tmux
 # execute pg_repack against desired db/table
 /usr/lib/postgresql/11/bin/pg_repack -h dbhost -U postgres -d dbname -t tablename -k
 ```
+
+Delete the pod from above after it is no longer needed:
+
+```shell
+kubectl delete po -n your-namespace repack
+```
