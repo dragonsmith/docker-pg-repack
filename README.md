@@ -5,7 +5,7 @@
 ```shell
 
 # run pod
-kubectl run repack --image dragonsmith/pg-repack:1.4.4-11.8 -n your-namespace
+kubectl run repack --image dragonsmith/pg-repack:1.4.6-13.2 -n your-namespace
 
 # enter the pod
 kubectl exec -it -n your-namespace repack -- /bin/bash
@@ -14,7 +14,7 @@ kubectl exec -it -n your-namespace repack -- /bin/bash
 tmux
 
 # execute pg_repack against desired db/table
-/usr/lib/postgresql/11/bin/pg_repack -h dbhost -U postgres -d dbname -t tablename -k
+/usr/lib/postgresql/13/bin/pg_repack -h dbhost -U postgres -d dbname -t tablename -k
 ```
 
 Delete the pod from above after it is no longer needed:
