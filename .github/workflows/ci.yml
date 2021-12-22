@@ -1,0 +1,28 @@
+---
+name: CI
+
+on:
+  push:
+    tags:
+      - '*-*'
+
+jobs:
+  docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prepare
+        id: dockerImageTag
+        run: |
+          TAG=
+          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build docker image
+        run: docker build -t dragonsmith/pg-repack:${{ steps.dockerImageTag.outputs.tag }} .
+      - name: Login to GCR
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push docker image
+        run: docker push dragonsmith/pg-repack:${{ steps.dockerImageTag.outputs.tag }}
