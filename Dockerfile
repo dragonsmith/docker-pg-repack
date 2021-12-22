@@ -1,4 +1,4 @@
-FROM postgres:13.2
+FROM postgres:13.5
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
@@ -15,6 +15,6 @@ RUN apt-get update \
     && rm -rf /var/{cache,lib}/apt \
     && truncate -s 0 /var/log/*log
 
-RUN pgxn install pg_repack=1.4.6
+RUN pgxn install pg_repack=1.4.7
 
 CMD ["sleep", "infinity"]

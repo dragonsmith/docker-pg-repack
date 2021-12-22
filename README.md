@@ -5,7 +5,7 @@
 ```shell
 
 # run pod
-kubectl run repack --image dragonsmith/pg-repack:1.4.6-13.2 -n your-namespace
+kubectl run repack --image dragonsmith/pg-repack:1.4.7-13.5 -n your-namespace
 
 # enter the pod
 kubectl exec -it -n your-namespace repack -- /bin/bash
